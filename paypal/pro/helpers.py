@@ -104,6 +104,11 @@ class PayPalWPP(object):
         nvp_obj = self._fetch(params, required, defaults)
         if nvp_obj.flag:
             raise PayPalFailure(nvp_obj.flag_info)
+        else:
+            # we really really need to add the transactionid for this transaction
+            # so that we can record it somewhere that matters
+            params.update({'transactionid':
+                           getattr(nvp_obj, 'transactionid', '')})
         payment_was_successful.send(params)
         return nvp_obj
         
