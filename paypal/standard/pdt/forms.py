@@ -8,3 +8,4 @@ class PayPalPDTForm(PayPalStandardBaseForm):
     class Meta:
         model = PayPalPDT
         fields = '__all__'
+
